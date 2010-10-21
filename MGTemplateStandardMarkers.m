@@ -19,10 +19,10 @@
 
 #define FOR_LOOP_VARS					@"currentLoop"
 #define FOR_LOOP_CURR_INDEX				@"currentIndex"
+#define FOR_LOOP_CURR_1_INDEX 			@"current1Index"
 #define FOR_LOOP_START_INDEX			@"startIndex"
 #define FOR_LOOP_END_INDEX				@"endIndex"
 #define FOR_PARENT_LOOP					@"parentLoop"
-
 #define STACK_START_MARKER_RANGE		@"markerRange"
 #define STACK_START_REMAINING_RANGE		@"remainingRange"
 #define FOR_STACK_ENUMERATOR			@"enumerator"
@@ -199,6 +199,7 @@
 												 [NSNumber numberWithInt:startIndex], FOR_LOOP_START_INDEX, 
 												 [NSNumber numberWithInt:endIndex], FOR_LOOP_END_INDEX, 
 												 [NSNumber numberWithInt:currentIndex], FOR_LOOP_CURR_INDEX, 
+												 [NSNumber numberWithInt:currentIndex+1], FOR_LOOP_CURR_1_INDEX, 
 												 [NSNumber numberWithBool:reversed], FOR_REVERSE, 
 												 nil];
 				NSMutableDictionary *blockVars = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -298,6 +299,7 @@
 					currentIndex++;
 				}
 				[loopVars setObject:[NSNumber numberWithInt:currentIndex] forKey:FOR_LOOP_CURR_INDEX];
+				[loopVars setObject:[NSNumber numberWithInt:currentIndex+1] forKey:FOR_LOOP_CURR_1_INDEX];
 				
 				// Set new val for enumVar if specified
 				NSMutableDictionary *newVars = [NSMutableDictionary dictionaryWithObjectsAndKeys:
