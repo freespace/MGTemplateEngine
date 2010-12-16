@@ -22,6 +22,8 @@ You must add the linker flag -all_load or -force_load when using the static iOS 
 
 See http://stackoverflow.com/questions/2906147/what-does-the-all-load-linker-flag-do
 
+If using ICUTemplateMatcher, then libicucore.dylib needs to be linked in.
+
 License & Copyright
 -------------------
 
