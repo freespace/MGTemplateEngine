@@ -11,11 +11,16 @@ Since his original code lies untouched for years on an SVN repo we decided to do
 What's new in this fork
 -----------------------
 
-Here's a list of things we did to the repo. Feel free to have a look at the commits for more details. The changes are rather small.
+Here's a list of things I did to the repo.
 
- * fixed some leaks
- * added a target for a static library to integrade into other projects
+ * Added a 1 based loop counter to generate row number for non-programmers
 
+Usage Notes
+-----------
+
+You must add the linker flag -all_load or -force_load when using the static iOS library or the categories on NSDictionary will not be visible and cause a run time error.
+
+See http://stackoverflow.com/questions/2906147/what-does-the-all-load-linker-flag-do
 
 License & Copyright
 -------------------
