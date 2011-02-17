@@ -28,6 +28,7 @@
 #define FOR_STACK_ENUMERATOR			@"enumerator"
 #define FOR_STACK_ENUM_VAR				@"enumeratorVariable"
 #define FOR_STACK_DISABLED_OUTPUT		@"disabledOutput"
+#define FOR_STACK_WAS_ENABLED_OUTPUT	@"wasEnabledOutput"
 
 //==============================================================================
 
@@ -234,6 +235,7 @@
 				*blockStarted = YES;
 				NSMutableDictionary *stackFrame = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 												   [NSNumber numberWithBool:YES], FOR_STACK_DISABLED_OUTPUT, 
+												   [NSNumber numberWithBool:*outputEnabled], FOR_STACK_WAS_ENABLED_OUTPUT,
 												   [NSValue valueWithRange:markerRange], STACK_START_MARKER_RANGE, 
 												   [NSValue valueWithRange:*nextRange], STACK_START_REMAINING_RANGE, 
 												   nil];
@@ -250,7 +252,8 @@
 			// Check to see if this was a block with an invalid looping condition.
 			NSNumber *disabledOutput = (NSNumber *)[frame objectForKey:FOR_STACK_DISABLED_OUTPUT];
 			if (disabledOutput && [disabledOutput boolValue]) {
-				*outputEnabled = YES;
+				NSNumber *wasEnabledOutput = (NSNumber *)[frame objectForKey:FOR_STACK_WAS_ENABLED_OUTPUT];
+				*outputEnabled = (wasEnabledOutput ? [wasEnabledOutput boolValue] : YES);
 				*blockEnded = YES;
 				[forStack removeLastObject];
 			}
