@@ -25,7 +25,7 @@
         if ([anObject respondsToSelector:@selector(deepMutableCopy)]) {
             anObject = [anObject deepMutableCopy];
             [newArray addObject:anObject];
-            //[anObject release];
+            [anObject release];
         } else if ([anObject respondsToSelector:@selector(mutableCopyWithZone:)]) {
             anObject = [anObject mutableCopyWithZone:nil];
             [newArray addObject:anObject];
@@ -35,7 +35,7 @@
         }
     }
 	
-    return [newArray autorelease];
+    return newArray;
 }
 
 
