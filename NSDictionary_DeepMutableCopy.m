@@ -26,7 +26,7 @@
         if ([anObject respondsToSelector:@selector(deepMutableCopy)]) {
             anObject = [anObject deepMutableCopy];
             [newDictionary setObject:anObject forKey:aKey];
-            [anObject release];
+            //[anObject release];
         } else if ([anObject respondsToSelector:@selector(mutableCopyWithZone:)]) {
             anObject = [anObject mutableCopyWithZone:nil];
             [newDictionary setObject:anObject forKey:aKey];
@@ -36,7 +36,7 @@
 		}
     }
 	
-    return newDictionary;
+    return [newDictionary autorelease];
 }
 
 
